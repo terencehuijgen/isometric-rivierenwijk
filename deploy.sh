@@ -7,6 +7,7 @@ builtin cd "$(dirname "$0")"
 cp viewer/index.html site/index.html
 
 remote=$(git remote get-url origin)
+[[ "$remote" == *"jankeesvw/isometric-helenaveen"* ]] && { echo "Set origin to your own map repository before publishing" >&2; exit 1; }
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
 cp -r site/. "$tmp"

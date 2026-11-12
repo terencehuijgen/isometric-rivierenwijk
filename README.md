@@ -1,3 +1,18 @@
+# Isometrisch Rivierenwijk, Utrecht
+
+Kaartgebied: 2 × 2 km, RD New / EPSG:28992 (135500, 453500)–(137500, 455500).
+
+Gebaseerd op Isometric Helenaveen van @jankeesvw. De oorspronkelijke pipelinebeschrijving staat hieronder. Lokale verhalen en kaartinstellingen zijn aangepast voor Utrecht.
+
+Bouwen: `./build.sh`. Met bestaande downloads: `SKIP_FETCH=1 ./build.sh`.
+Bekijken: `python3 -m http.server 8000 -d site`.
+Publiceren: `./deploy.sh` naar de eigen origin; upstream blijft het voorbeeld.
+
+Bronnen en licenties: zie [DATA-LICENSES.md](DATA-LICENSES.md).
+Adreszoeklijst: postcodes 3521, 3522, 3523, beperkt tot het kaartgebied. Gebouwen en grond beslaan het volledige gebied.
+
+---
+
 # Isometric Helenaveen
 
 Hi, I'm [@jankeesvw](https://x.com/intent/follow?screen_name=jankeesvw) on X. I rebuilt my village Helenaveen in isometric pixel art, with Claude Code and nothing but open data. See it live at [jankeesvw.github.io/isometric-helenaveen](https://jankeesvw.github.io/isometric-helenaveen/).

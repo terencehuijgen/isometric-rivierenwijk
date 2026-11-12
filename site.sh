@@ -55,3 +55,5 @@ cp -r data/build/history "$SITE/history"
 cp -r viewer/music "$SITE/music"
 touch "$SITE/.nojekyll"
 echo "$SITE/ is ready: $(find "$SITE" -type f | wc -l) files, $(du -sh "$SITE" | cut -f1)"
+
+cp DATA-LICENSES.md "$SITE/DATA-LICENSES.md"

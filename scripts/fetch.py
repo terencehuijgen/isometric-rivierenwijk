@@ -133,23 +133,27 @@ def fetch_ahn(cov, ix, iy, chunk=CHUNK):
 
 
 def fetch_addresses():
-    """Every BAG address in Helenaveen, for the viewer's search box."""
+    """BAG addresses within the map area, for the viewer's search box."""
     out = RAW / "addresses.json"
     if out.exists():
         return
-    pts, start = [], 0
-    while True:
-        q = urllib.parse.urlencode(
-            {"q": "*", "fq": ["woonplaatsnaam:Helenaveen", "type:adres"], "fl": "weergavenaam,centroide_rd", "rows": 100, "start": start},
-            doseq=True,
-        )
-        d = get(f"https://api.pdok.nl/bzk/locatieserver/search/v3_1/free?{q}")["response"]
-        for doc in d["docs"]:
-            x, y = (float(v) for v in doc["centroide_rd"][6:-1].split())
-            pts.append((x, y, doc["weergavenaam"]))
-        start += 100
-        if start >= d["numFound"]:
-            break
+    pts = []
+    # Partition by four-digit postcode to stay below Locatieserver's paging limit.
+    for postcode in (3521, 3522, 3523):
+        start = 0
+        while True:
+            q = urllib.parse.urlencode({"q": "*", "fq": ["woonplaatsnaam:Utrecht", "type:adres", f"postcode:{postcode}*"], "fl": "weergavenaam,centroide_rd", "rows": 100, "start": start}, doseq=True)
+            d = get(f"https://api.pdok.nl/bzk/locatieserver/search/v3_1/free?{q}")["response"]
+            for doc in d["docs"]:
+                x, y = map(float, doc["centroide_rd"][6:-1].split())
+                if XMIN <= x <= XMAX and YMIN <= y <= YMAX:
+                    pts.append((x, y, doc["weergavenaam"]))
+            start += 100
+            if start >= d["numFound"]:
+                break
+        print(f"addresses {postcode}: {len(pts)} in map", file=sys.stderr)
+    if not pts:
+        raise RuntimeError("No addresses found in map area")
     out.write_text(json.dumps(pts))
 
 

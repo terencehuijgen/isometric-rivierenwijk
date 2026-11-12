@@ -6,7 +6,9 @@ set -euo pipefail
 builtin cd "$(dirname "$0")"
 SCALE="${SCALE:-4}"
 
-(builtin cd scripts && python3 fetch.py)
+if [ "${SKIP_FETCH:-0}" != 1 ]; then
+  (builtin cd scripts && python3 fetch.py)
+fi
 (builtin cd scripts && uv run --quiet landmarks.py)
 (builtin cd scripts && uv run --quiet build_buildings.py)
 (builtin cd scripts && uv run --quiet build_trees.py 2>&1 | grep -v GDAL_NODATA)
