@@ -1,5 +1,6 @@
 """Resident stories form the Rivierenwijk tour; no Helenaveen content."""
 import json
+import hashlib
 import urllib.request
 import urllib.parse
 import urllib.error
