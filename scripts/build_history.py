@@ -30,7 +30,7 @@ def download(url, tries=6):
 
 def main():
     landmarks = json.loads((BUILD / "landmarks.json").read_text())
-    stops = [{"n": i, "year": "Buurtverhaal", "title": p["name"], "text": p.get("text", ""), "x": p["x"], "y": p["y"], "h": 0, "zoom": 1.2, "photos": [], "source": {"label": "OpenStreetMap" if p.get("more") else "Bewonersbijdrage", "url": p.get("more", "#Amaliastraat-53")}} for i, p in enumerate(landmarks["hotspots"], 1)]
+    stops = [{"n": i, "year": "Buurtverhaal", "title": p["name"], "text": p.get("text", ""), "x": p["x"], "y": p["y"], "h": 0, "zoom": 1.2, "photos": [], "source": {"label": "OpenStreetMap" if p.get("more") else "Bewonersbijdrage", "url": p.get("more", "#" + p["name"].replace(" ", "-"))}} for i, p in enumerate(landmarks["hotspots"], 1)]
     (BUILD / "history").mkdir(parents=True, exist_ok=True)
     (BUILD / "history.json").write_text(json.dumps({"stops": stops}, ensure_ascii=False))
 

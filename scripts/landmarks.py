@@ -20,10 +20,11 @@ from geo import wgs_to_rd
 # Local stories supplied by the resident; address positions resolved from BAG.
 BUILDINGS = []
 POINTS = [
+    {"name": "Jutfaseweg 42", "addr": "Jutfaseweg 42", "kind": "Buurtverhaal", "text": 'Hier wonen de "tweendjes van de buurt".', "address": "Jutfaseweg 42, Utrecht"},
     {"name": "Amaliastraat 53", "addr": "Amaliastraat 53", "kind": "Buurtverhaal", "text": "De woning van de opperbaas van de regio. Een bewonersbijdrage voor deze kaart.", "address": "Amaliastraat 53, Utrecht"},
 ]
 POINTS += [{'name': 'Mobach Keramiek', 'latlon': (52.0702362, 5.1104442), 'kind': 'In en rond Rivierenwijk', 'text': 'Keramiek aan de Jutfaseweg: een herkenningspunt langs de Vaartsche Rijn en een plek waar de wijk aan het water raakt.', 'more': 'https://www.openstreetmap.org/node/34050700'}, {'name': 'Meisje met schelp', 'latlon': (52.0733002, 5.12095), 'kind': 'In en rond Rivierenwijk', 'text': 'Een klein kunstwerk tussen de woonstraten. Juist zulke plekken maken een wandeling door de wijk persoonlijk.', 'more': 'https://www.openstreetmap.org/node/8586709855'}, {'name': 'Nieuw Rotsoord stadsboerderij', 'latlon': (52.07408004516128, 5.122222538709678), 'kind': 'In en rond Rivierenwijk', 'text': 'Een groene ontmoetingsplek aan de overkant van het water, voor een uitstapje vanuit de wijk.', 'more': 'https://www.openstreetmap.org/way/107339388'}, {'name': 'Watertoren Utrecht (Heuveloord)', 'latlon': (52.075496059016395, 5.120785581967213), 'kind': 'In en rond Rivierenwijk', 'text': 'Aan de overkant van de Vaartsche Rijn markeert de watertoren Rotsoord: een opvallend oriëntatiepunt vanuit Rivierenwijk.', 'more': 'https://www.openstreetmap.org/way/299564140'}]
-CATEGORIES = [("buurtverhalen", "Buurtverhalen", ["Amaliastraat 53"]), ("ontdekken", "In en rond de wijk", ['Mobach Keramiek', 'Meisje met schelp', 'Nieuw Rotsoord stadsboerderij', 'Watertoren Utrecht (Heuveloord)'])]
+CATEGORIES = [("buurtverhalen", "Buurtverhalen", ["Amaliastraat 53", "Jutfaseweg 42"]), ("ontdekken", "In en rond de wijk", ['Mobach Keramiek', 'Meisje met schelp', 'Nieuw Rotsoord stadsboerderij', 'Watertoren Utrecht (Heuveloord)'])]
 
 # What the viewer shows when a place is clicked; the rest of an entry is for the render.
 INFO = ("note", "kind", "text", "address", "web", "more", "photo", "stop")
